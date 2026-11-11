@@ -1,0 +1,2 @@
+/// Shared charts module.
+library;

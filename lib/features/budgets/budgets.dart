@@ -1,0 +1,30 @@
+/// Budgets feature module.
+library;
+
+export 'domain/models/break_even_analysis.dart';
+export 'domain/models/budget_category_presets.dart';
+export 'domain/models/budget_item_with_category.dart';
+export 'domain/models/budget_tracking.dart';
+export 'domain/models/budget_variance.dart';
+export 'domain/models/forecast_model.dart';
+export 'domain/repositories/budget_category_repository.dart';
+export 'domain/repositories/budget_item_repository.dart';
+export 'domain/repositories/forecast_repository.dart';
+export 'data/repositories/budget_category_repository_impl.dart';
+export 'data/repositories/budget_item_repository_impl.dart';
+export 'data/repositories/forecast_repository_impl.dart';
+export 'presentation/providers/budget_category_providers.dart';
+export 'presentation/providers/budget_item_providers.dart';
+export 'presentation/providers/budget_tracking_providers.dart';
+export 'presentation/providers/budget_variance_providers.dart';
+export 'presentation/providers/forecast_providers.dart';
+export 'presentation/screens/budget_categories_screen.dart';
+export 'presentation/widgets/break_even_simulator_sheet.dart';
+export 'presentation/widgets/break_even_summary_card.dart';
+export 'presentation/widgets/budget_category_tile.dart';
+export 'presentation/widgets/budget_item_tile.dart';
+export 'presentation/widgets/budget_item_form_dialog.dart';
+export 'presentation/widgets/budget_variance_card.dart';
+export 'presentation/widgets/create_budget_category_dialog.dart';
+export 'presentation/widgets/revenue_forecast_modeler_sheet.dart';
+export 'presentation/widgets/yield_revenue_forecast_card.dart';

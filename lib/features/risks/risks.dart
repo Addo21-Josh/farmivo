@@ -1,0 +1,2 @@
+/// Risks feature module.
+library;

@@ -1,0 +1,2 @@
+/// Shared dialogs module.
+library;
