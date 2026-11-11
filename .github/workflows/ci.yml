@@ -122,10 +122,13 @@ jobs:
         id: coverage
         run: |
           if [ -f coverage/lcov.info ]; then
-            # Filter out generated files (*.g.dart, *.freezed.dart)
-            lcov --remove coverage/lcov.info '*.g.dart' '*.freezed.dart' -o coverage/filtered.info
-            TOTAL_LINES=$(lcov --summary coverage/filtered.info | grep "lines......:" | awk '{print $2}')
-            echo "COVERAGE_TOTAL=$TOTAL_LINES" >> $GITHUB_ENV
+            # Filter out generated files (*.g.dart) ignoring unused pattern errors
+            lcov --ignore-errors unused,empty --remove coverage/lcov.info '*.g.dart' '*.freezed.dart' -o coverage/filtered.info || \
+            lcov --remove coverage/lcov.info '*.g.dart' -o coverage/filtered.info || \
+            cp coverage/lcov.info coverage/filtered.info
+
+            TOTAL_LINES=$(lcov --summary coverage/filtered.info --ignore-errors unused,empty 2>/dev/null | grep "lines......:" | awk '{print $2}' || echo "N/A")
+            echo "COVERAGE_TOTAL=${TOTAL_LINES:-N/A}" >> $GITHUB_ENV
             echo "COVERAGE_AVAILABLE=true" >> $GITHUB_ENV
           else
             echo "COVERAGE_AVAILABLE=false" >> $GITHUB_ENV
