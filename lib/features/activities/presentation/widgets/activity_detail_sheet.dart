@@ -43,57 +43,59 @@ class ActivityDetailSheet extends ConsumerWidget {
                 ),
                 if (activity.hasLinkedExpense) ...[
                   const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.amber.withAlpha(30),
+                  Material(
+                    color: Colors.amber.withAlpha(30),
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.amber.withAlpha(120)),
+                      side: BorderSide(color: Colors.amber.withAlpha(120)),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.warning_amber_rounded,
-                              size: 18,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Linked Financial Expense',
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(
+                                Icons.warning_amber_rounded,
+                                size: 18,
+                                color: Colors.amber,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Linked Financial Expense',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          const Text(
+                            'This activity generated an expense in the financial ledger.',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                          const SizedBox(height: 8),
+                          CheckboxListTile(
+                            contentPadding: EdgeInsets.zero,
+                            dense: true,
+                            title: const Text(
+                              'Also remove linked expense from ledger',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
                                 fontSize: 13,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'This activity generated an expense in the financial ledger.',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        const SizedBox(height: 8),
-                        CheckboxListTile(
-                          contentPadding: EdgeInsets.zero,
-                          dense: true,
-                          title: const Text(
-                            'Also remove linked expense from ledger',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            value: deleteLinked,
+                            onChanged: (val) {
+                              setDialogState(() {
+                                deleteLinked = val ?? false;
+                              });
+                            },
                           ),
-                          value: deleteLinked,
-                          onChanged: (val) {
-                            setDialogState(() {
-                              deleteLinked = val ?? false;
-                            });
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

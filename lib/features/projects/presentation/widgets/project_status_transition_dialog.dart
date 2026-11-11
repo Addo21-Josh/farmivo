@@ -187,38 +187,40 @@ class _ProjectStatusTransitionDialogState
                     mainAxisSize: MainAxisSize.min,
                     children: _allowedNextStates.map((state) {
                       final isSelected = _selectedTarget == state;
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 8),
-                        decoration: BoxDecoration(
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Material(
                           color: isSelected
                               ? theme.colorScheme.primaryContainer.withAlpha(50)
                               : theme.colorScheme.surfaceContainerHighest
                                     .withAlpha(40),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: isSelected
-                                ? theme.colorScheme.primary
-                                : theme.dividerColor,
-                            width: isSelected ? 1.5 : 1,
-                          ),
-                        ),
-                        child: RadioListTile<ProjectLifecycleState>(
-                          value: state,
-                          secondary: Icon(
-                            state.stageIcon,
-                            color: theme.colorScheme.primary,
-                          ),
-                          title: Text(
-                            state.displayName,
-                            style: TextStyle(
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.w500,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: BorderSide(
+                              color: isSelected
+                                  ? theme.colorScheme.primary
+                                  : theme.dividerColor,
+                              width: isSelected ? 1.5 : 1,
                             ),
                           ),
-                          subtitle: Text(
-                            state.stageDescription,
-                            style: const TextStyle(fontSize: 12),
+                          child: RadioListTile<ProjectLifecycleState>(
+                            value: state,
+                            secondary: Icon(
+                              state.stageIcon,
+                              color: theme.colorScheme.primary,
+                            ),
+                            title: Text(
+                              state.displayName,
+                              style: TextStyle(
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.w500,
+                              ),
+                            ),
+                            subtitle: Text(
+                              state.stageDescription,
+                              style: const TextStyle(fontSize: 12),
+                            ),
                           ),
                         ),
                       );

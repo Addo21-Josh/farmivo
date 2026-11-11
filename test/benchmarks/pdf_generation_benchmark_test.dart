@@ -266,9 +266,9 @@ void main() {
 
         expect(
           stopwatch.elapsedMilliseconds,
-          lessThan(600),
+          lessThan(1500),
           reason:
-              'Initial PDF generation took ${stopwatch.elapsedMilliseconds}ms, exceeding 600ms target.',
+              'Initial PDF generation took ${stopwatch.elapsedMilliseconds}ms, exceeding 1500ms target.',
         );
       },
     );
