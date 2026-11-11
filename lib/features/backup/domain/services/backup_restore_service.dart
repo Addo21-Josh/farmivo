@@ -146,7 +146,7 @@ class BackupRestoreService {
   Future<RestoreResult> restoreFromSnapshot(BackupSnapshot snapshot) async {
     try {
       final bytes = await snapshot.file.readAsBytes();
-      return restoreFromBytes(bytes);
+      return await restoreFromBytes(bytes);
     } catch (e) {
       return RestoreResult.failure(message: 'Could not read backup file: $e');
     }

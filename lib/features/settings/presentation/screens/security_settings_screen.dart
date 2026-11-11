@@ -34,23 +34,25 @@ class SecuritySettingsScreen extends ConsumerWidget {
       builder: (ctx) {
         return AlertDialog(
           title: const Text('Auto-Lock Timeout'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: AutoLockTimeout.values.map((timeout) {
-              return RadioListTile<AutoLockTimeout>(
-                title: Text(timeout.displayName),
-                value: timeout,
-                groupValue: current,
-                onChanged: (val) {
-                  if (val != null) {
-                    ref
-                        .read(securitySettingsProvider.notifier)
-                        .setAutoLockTimeout(val);
-                    Navigator.pop(ctx);
-                  }
-                },
-              );
-            }).toList(),
+          content: RadioGroup<AutoLockTimeout>(
+            groupValue: current,
+            onChanged: (val) {
+              if (val != null) {
+                ref
+                    .read(securitySettingsProvider.notifier)
+                    .setAutoLockTimeout(val);
+                Navigator.pop(ctx);
+              }
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: AutoLockTimeout.values.map((timeout) {
+                return RadioListTile<AutoLockTimeout>(
+                  title: Text(timeout.displayName),
+                  value: timeout,
+                );
+              }).toList(),
+            ),
           ),
           actions: [
             TextButton(
